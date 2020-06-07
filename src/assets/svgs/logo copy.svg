@@ -1,0 +1,8 @@
+<svg 
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ width="500" height="500" fill="#b35bb5">
+  <path id="svg_1" d="m62.025055,25l134.975983,0l-27.037018,450l-134.97699,0l27.038025,-450z" fill-rule="evenodd"/>
+  <path id="svg_2" d="m62.597046,25l64.040985,0l312.739044,450l-136.602051,0l-240.177979,-450z" opacity="0.62" fill-rule="evenodd"/>
+  <path id="svg_3" d="m330.033081,25l134.953003,0l-27.033081,450l-134.953003,0l27.033081,-450z" opacity="0.38" fill-rule="evenodd"/>
+</svg>

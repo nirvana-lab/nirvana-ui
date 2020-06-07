@@ -1,0 +1,14 @@
+div {
+  box-sizing: border-box;
+}
+.input{
+  outline: none;
+  border: 1px solid #dee4e7;
+  line-height: 22px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 4px 6px;
+  &.small{
+    padding: 0 6px;
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "name": "gittest",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently -k --raw 'npm run dev:client' 'npm run dev:server'",
+    "build": "npm run build:client && npm run build:server",
+    "lint": "vue-cli-service lint",
+    "dev:client": "PROXY=http://localhost:3000 vue-cli-service serve",
+    "dev:server": "PORT=3000 GIT=https://gitlab.daocloud.io TEST=http://10.10.130.100:9090 DB_NAME=nirvana7 DB_USER=postgres DB_PASSWORD=password DB_HOST=10.10.130.100 DB_PORT=5432 nodemon -w ./server -e js,yaml server/server.js",
+    "build:client": "vue-cli-service build",
+    "build:server": "webpack -p --config scripts/webpack.server.js --display errors-only"
+  },
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^9.0.1",
+    "axios": "^0.19.2",
+    "codemirror": "^5.53.2",
+    "cookie": "^0.4.0",
+    "core-js": "^3.6.4",
+    "dayjs": "^1.8.24",
+    "js-cookie": "^2.2.1",
+    "js-yaml": "^3.13.1",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-compose": "^4.1.0",
+    "koa-connect-history-api-fallback": "^0.3.1",
+    "koa-log4": "^2.3.2",
+    "koa-proxies": "^0.11.0",
+    "koa-router": "^8.0.8",
+    "koa-static": "^5.0.0",
+    "noty": "^3.2.0-beta",
+    "pg": "^8.0.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.5",
+    "svg-inline-loader": "^0.8.2",
+    "svg-sprite-loader": "^4.3.0",
+    "swagger-ui": "^3.25.0",
+    "vue": "^2.6.11",
+    "vue-codemirror": "^4.0.6",
+    "vue-router": "^3.1.6",
+    "vuex": "^3.1.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-plugin-router": "~4.3.0",
+    "@vue/cli-plugin-vuex": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "babel-eslint": "^10.1.0",
+    "concurrently": "^5.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "nodemon": "^2.0.3",
+    "sass": "^1.26.3",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/airbnb"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {
+      "no-param-reassign": [
+        "error",
+        {
+          "props": false
+        }
+      ],
+      "max-len": [
+        0,
+        300,
+        4
+      ]
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
