@@ -10,8 +10,9 @@
       />
     </div>
     <div v-for="(i, index) in value" :key="index">
+      <div class="mb-5">
       <VueSelect
-        button-class="small white mb-5"
+        button-class="small white"
         :value="i.name"
         @update="e => handleUpdate(index, 'name', e)"
       >
@@ -22,6 +23,13 @@
           :key="i.name"
         />
         </VueSelect>
+        <vue-button
+          small
+          @click="handleDelete(index)"
+          class="icon-button round red flat"
+          iconLeft="remove_circle"
+        />
+        </div>
         <div v-if="map[i.name]" class="mb-5">
           <span v-for="arg in map[i.name].args" :key="arg">
             {{arg}}:

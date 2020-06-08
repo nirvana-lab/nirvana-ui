@@ -189,8 +189,8 @@ export default {
           data: {
             case: this.name,
             description: this.description,
-            setup: [],
-            teardown: [],
+            setup: this.setup,
+            teardown: this.teardown,
             parameters: resultParameters,
             body: this.body,
             validator: this.response,
@@ -225,6 +225,8 @@ export default {
       if (this.copy.body !== this.body) return true;
       if (this.copy.response !== JSON.stringify(this.response)) return true;
       if (this.copy.parameters !== JSON.stringify(this.parameters)) return true;
+      if (this.copy.teardown !== JSON.stringify(this.teardown)) return true;
+      if (this.copy.setup !== JSON.stringify(this.setup)) return true;
       return false;
     },
   },
