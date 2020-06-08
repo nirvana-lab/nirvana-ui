@@ -38,3 +38,5 @@ export const updateScript = ({ id, data }) => axios.put(`/api/nv/scripts/${id}`,
 
 
 export const getScriptsSelect = (id) => axios.get('/api/nv/scripts/select', { params: { project_id: id } });
+
+export const copyTest = (id) => axios.get(`/api/nv/testcases/${id}/copy`);

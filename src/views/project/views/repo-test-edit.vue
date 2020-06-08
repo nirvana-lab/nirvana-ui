@@ -4,8 +4,9 @@
       <vue-button class="round black mr-10" v-if="changed" @click="handleSave">Save</vue-button>
       <vue-button iconLeft="bug_report" class="round" @click="handleRun">Run</vue-button>
       <vue-button class="round r red flat" @click="deleteDialog = true">Delete</vue-button>
+      <vue-button class="round r green flat" @click="copyDialog = true">Copy</vue-button>
     </div>
-    <vue-loading class="big pt-10" v-if="loading"/>
+    <vue-loading class="big pt-10" v-if="loading" />
     <template v-else>
       <nv-table>
         <thead>
@@ -16,8 +17,12 @@
         </thead>
         <tbody>
           <tr>
-            <td><vue-input type="text" large v-model="name" class="flat b db" /></td>
-            <td><vue-input type="text" v-model="description" class="flat db" /></td>
+            <td>
+              <vue-input type="text" large v-model="name" class="flat b db" />
+            </td>
+            <td>
+              <vue-input type="text" v-model="description" class="flat db" />
+            </td>
           </tr>
         </tbody>
       </nv-table>
@@ -25,16 +30,33 @@
       <Params v-model="parameters" />
       <Request v-model="body" />
       <Response v-model="response" />
-    <Teardown v-model="teardown" />
+      <Teardown v-model="teardown" />
     </template>
-    <VueModal v-if="deleteDialog" title="Delete Test Cases" class="small" @close="deleteDialog = false">
-      <div class="default-body">
-        Do you want to delete this testcase？
-      </div>
+    <VueModal
+      v-if="deleteDialog"
+      title="Delete Test Cases"
+      class="small"
+      @close="deleteDialog = false"
+    >
+      <div class="default-body">Do you want to delete this testcase？</div>
       <div slot="footer" class="actions">
         <div class="space"></div>
-        <VueButton class="red round" @click="handleDelete" :loading="loadingDelete">Confirm</VueButton>
-        <VueButton class="flat round" @click="create = false" :disabled="loadingDelete">Cancel</VueButton>
+        <VueButton class="red round" @click="handleDelete" :loading="loadingDelete"
+          >Confirm</VueButton
+        >
+        <VueButton class="flat round" @click="deleteDialog = false" :disabled="loadingDelete"
+          >Cancel</VueButton
+        >
+      </div>
+    </VueModal>
+    <VueModal v-if="copyDialog" title="Copy Test Cases" class="small" @close="copyDialog = false">
+      <div class="default-body">Do you want to copy this testcase？</div>
+      <div slot="footer" class="actions">
+        <div class="space"></div>
+        <VueButton class="red round" @click="handCopy" :loading="loadingDelete">Confirm</VueButton>
+        <VueButton class="flat round" @click="copyDialog = false" :disabled="loadingDelete"
+          >Cancel</VueButton
+        >
       </div>
     </VueModal>
   </div>
@@ -57,6 +79,7 @@ export default {
     return {
       loading: true,
       deleteDialog: false,
+      copyDialog: false,
       loadingDelete: false,
       copy: {},
       run: '',
@@ -125,6 +148,7 @@ export default {
           this.setup = data.content.setup || [];
           this.teardown = data.content.teardown || [];
           this.loading = false;
+          this.loading = false;
           this.copy = {
             description: data.content.description || '',
             name: data.content.case || '',
@@ -138,6 +162,19 @@ export default {
         .catch(() => {
           this.loading = false;
         });
+    },
+    handCopy() {
+      const { params, query } = this.$route;
+      testService.copyTest(params.test).then(() => {
+        this.$store.dispatch('test/GET_TESTS', {
+          projectId: params.id,
+          filePath: query.file,
+          ref: query.ref || this.repo.default_branch,
+          method: query.method,
+          path: query.path,
+        });
+        this.copyDialog = false;
+      });
     },
     handleSave() {
       const resultParameters = this.parameters.map((i) => ({
