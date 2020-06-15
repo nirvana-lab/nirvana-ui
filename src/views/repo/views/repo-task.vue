@@ -41,7 +41,6 @@
   </div>
 </template>
 
-
 <script>
 import * as taskService from '@/services/taskService';
 import TaskCases from '../components/repo-task/task-cases.vue';

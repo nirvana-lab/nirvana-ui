@@ -6,14 +6,12 @@ import RepoTaskCreate from '@/views/repo/views/repo-task-create.vue';
 import RepoTaskLog from '@/views/repo/views/repo-task-log.vue';
 import RepoScript from '@/views/repo/views/repo-script.vue';
 import RepoScriptCreate from '@/views/repo/views/repo-script-create.vue';
-
 import RepoSwagger from '@/views/project/views/repo-swagger.vue';
 import RepoVariable from '@/views/project/views/repo-variable.vue';
 import RepoTest from '@/views/project/views/repo-test.vue';
 import RepoTestCreate from '@/views/project/views/repo-test-create.vue';
 import RepoTestEdit from '@/views/project/views/repo-test-edit.vue';
 import RepoTestLog from '@/views/project/views/repo-test-log.vue';
-
 
 const index = Vue.extend({
   template: '<router-view/>',

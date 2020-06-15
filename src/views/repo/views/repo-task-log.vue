@@ -1,10 +1,8 @@
-
 <template>
   <div class="repo-script">
     <iframe class="iframe" :src="`/api/task/${$route.params.task}`" frameborder="0"></iframe>
   </div>
 </template>
-
 
 <script>
 import * as taskService from '@/services/taskService';

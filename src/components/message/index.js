@@ -2,7 +2,6 @@ import Noty from 'noty';
 import './noty.css';
 import './dao.css';
 
-
 const VueNoty = {
   options: {
     layout: 'topRight',
